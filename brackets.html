@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<script>
+	function correctBrackets(str){
+		var brackets = {
+			"[" : "]",
+			"{" : "}",
+			"<" : ">",
+			"(" : ")"
+		};
+		var openBrackets;
+		var closeBrackets;
+		
+		// Checking on equality length brackets
+		if(str.length % 2 != 0){
+			return null;
+		}
+		
+		// Checking on allowed brackets
+		for(var i = 0; i < str.length / 2; i++){
+			if(!brackets[str[i]]){
+				return null;
+			}
+		}
+		
+		// Create correct sequence
+		openBrackets = str.substr(0, str.length / 2);
+		closeBrackets = str.substr(str.length / 2).split("");
+		
+		for(var i = 0, ri; i < str.length / 2; i++){
+			ri = (str.length / 2) - (i + 1);
+			if(brackets[openBrackets[i]] != closeBrackets[ri]){
+				closeBrackets[ri] = brackets[openBrackets[i]];
+			}
+		}
+		
+		closeBrackets = closeBrackets.join("");
+		
+		return openBrackets + closeBrackets;
+	}
+	
+	console.log(correctBrackets("[}"));
+	console.log(correctBrackets("[()}"));
+	console.log(correctBrackets("[[[)])"));
+	console.log(correctBrackets("<{[(>}])"));
+	console.log(correctBrackets("]]"));
+	console.log(correctBrackets("[[[))"));
+	console.log(correctBrackets("{((])]"));
+	</script>
+	<title>Brackets</title>
+</head>
+<body>
+
+
+
+</body>
+</html>
